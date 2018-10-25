@@ -1,59 +1,61 @@
 ﻿@model SuperheroProj.Models.SuperheroProj
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detail";
 }
 
-<h2>Details</h2>
+<h2>Detail</h2>
 
-<fieldset>
-    <legend>SuperheroProj</legend>
+<div>
+    <h4>SuperheroProj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
 
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.AlterName)
+        </dt>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.AlterName)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.AlterName)
+        </dd>
 
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AlterName)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ability)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Ability)
+        </dd>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Ability)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondAbility)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.SecondAbility)
+        </dd>
 
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Ability)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Catchphrase)
+        </dt>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.SecondAbility)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Catchphrase)
+        </dd>
 
-    <div class="display-field">
-        @Html.DisplayFor(model => model.SecondAbility)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Catchphrase)
-    </div>
-
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Catchphrase)
-    </div>
-
-
-</fieldset>
+    </dl>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+
