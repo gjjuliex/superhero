@@ -120,3 +120,4 @@ C:\Users\julie\Documents\devcode\SuperheroProj\SuperheroProj\obj\Debug\Superhero
 C:\Users\julie\Documents\devcode\SuperheroProj\SuperheroProj\obj\Debug\SuperheroProj.pdb
 C:\Users\julie\Documents\devcode\SuperheroProj\SuperheroProj\obj\Debug\SuperheroProj.Migrations.initialmigration.resources
 C:\Users\julie\Documents\devcode\SuperheroProj\SuperheroProj\obj\Debug\SuperheroProj.csproj.GenerateResource.cache
+C:\Users\julie\Documents\devcode\SuperheroProj\SuperheroProj\obj\Debug\SuperheroProj.Migrations.AddedIdPropertytosuperheromodel.resources

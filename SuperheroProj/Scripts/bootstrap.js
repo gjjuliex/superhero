@@ -915,8 +915,8 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
+ * Bootstrap: jumbotron.js v3.3.7
+ * http://getbootstrap.com/javascript/#jumbotrons
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -926,14 +926,14 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   'use strict';
 
-  // MODAL CLASS DEFINITION
+  // jumbotron CLASS DEFINITION
   // ======================
 
-  var Modal = function (element, options) {
+  var jumbotron = function (element, options) {
     this.options             = options
     this.$body               = $(document.body)
     this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
+    this.$dialog             = this.$element.find('.jumbotron-dialog')
     this.$backdrop           = null
     this.isShown             = null
     this.originalBodyPad     = null
@@ -942,31 +942,31 @@ if (typeof jQuery === 'undefined') {
 
     if (this.options.remote) {
       this.$element
-        .find('.modal-content')
+        .find('.jumbotron-content')
         .load(this.options.remote, $.proxy(function () {
-          this.$element.trigger('loaded.bs.modal')
+          this.$element.trigger('loaded.bs.jumbotron')
         }, this))
     }
   }
 
-  Modal.VERSION  = '3.3.7'
+  jumbotron.VERSION  = '3.3.7'
 
-  Modal.TRANSITION_DURATION = 300
-  Modal.BACKDROP_TRANSITION_DURATION = 150
+  jumbotron.TRANSITION_DURATION = 300
+  jumbotron.BACKDROP_TRANSITION_DURATION = 150
 
-  Modal.DEFAULTS = {
+  jumbotron.DEFAULTS = {
     backdrop: true,
     keyboard: true,
     show: true
   }
 
-  Modal.prototype.toggle = function (_relatedTarget) {
+  jumbotron.prototype.toggle = function (_relatedTarget) {
     return this.isShown ? this.hide() : this.show(_relatedTarget)
   }
 
-  Modal.prototype.show = function (_relatedTarget) {
+  jumbotron.prototype.show = function (_relatedTarget) {
     var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+    var e    = $.Event('show.bs.jumbotron', { relatedTarget: _relatedTarget })
 
     this.$element.trigger(e)
 
@@ -976,15 +976,15 @@ if (typeof jQuery === 'undefined') {
 
     this.checkScrollbar()
     this.setScrollbar()
-    this.$body.addClass('modal-open')
+    this.$body.addClass('jumbotron-open')
 
     this.escape()
     this.resize()
 
-    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
+    this.$element.on('click.dismiss.bs.jumbotron', '[data-dismiss="jumbotron"]', $.proxy(this.hide, this))
 
-    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
-      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
+    this.$dialog.on('mousedown.dismiss.bs.jumbotron', function () {
+      that.$element.one('mouseup.dismiss.bs.jumbotron', function (e) {
         if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
       })
     })
@@ -993,7 +993,7 @@ if (typeof jQuery === 'undefined') {
       var transition = $.support.transition && that.$element.hasClass('fade')
 
       if (!that.$element.parent().length) {
-        that.$element.appendTo(that.$body) // don't move modals dom position
+        that.$element.appendTo(that.$body) // don't move jumbotrons dom position
       }
 
       that.$element
@@ -1010,22 +1010,22 @@ if (typeof jQuery === 'undefined') {
 
       that.enforceFocus()
 
-      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+      var e = $.Event('shown.bs.jumbotron', { relatedTarget: _relatedTarget })
 
       transition ?
-        that.$dialog // wait for modal to slide in
+        that.$dialog // wait for jumbotron to slide in
           .one('bsTransitionEnd', function () {
             that.$element.trigger('focus').trigger(e)
           })
-          .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
+          .emulateTransitionEnd(jumbotron.TRANSITION_DURATION) :
         that.$element.trigger('focus').trigger(e)
     })
   }
 
-  Modal.prototype.hide = function (e) {
+  jumbotron.prototype.hide = function (e) {
     if (e) e.preventDefault()
 
-    e = $.Event('hide.bs.modal')
+    e = $.Event('hide.bs.jumbotron')
 
     this.$element.trigger(e)
 
@@ -1036,26 +1036,26 @@ if (typeof jQuery === 'undefined') {
     this.escape()
     this.resize()
 
-    $(document).off('focusin.bs.modal')
+    $(document).off('focusin.bs.jumbotron')
 
     this.$element
       .removeClass('in')
-      .off('click.dismiss.bs.modal')
-      .off('mouseup.dismiss.bs.modal')
+      .off('click.dismiss.bs.jumbotron')
+      .off('mouseup.dismiss.bs.jumbotron')
 
-    this.$dialog.off('mousedown.dismiss.bs.modal')
+    this.$dialog.off('mousedown.dismiss.bs.jumbotron')
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
-        .one('bsTransitionEnd', $.proxy(this.hideModal, this))
-        .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
-      this.hideModal()
+        .one('bsTransitionEnd', $.proxy(this.hidejumbotron, this))
+        .emulateTransitionEnd(jumbotron.TRANSITION_DURATION) :
+      this.hidejumbotron()
   }
 
-  Modal.prototype.enforceFocus = function () {
+  jumbotron.prototype.enforceFocus = function () {
     $(document)
-      .off('focusin.bs.modal') // guard against infinite focus loop
-      .on('focusin.bs.modal', $.proxy(function (e) {
+      .off('focusin.bs.jumbotron') // guard against infinite focus loop
+      .on('focusin.bs.jumbotron', $.proxy(function (e) {
         if (document !== e.target &&
             this.$element[0] !== e.target &&
             !this.$element.has(e.target).length) {
@@ -1064,41 +1064,41 @@ if (typeof jQuery === 'undefined') {
       }, this))
   }
 
-  Modal.prototype.escape = function () {
+  jumbotron.prototype.escape = function () {
     if (this.isShown && this.options.keyboard) {
-      this.$element.on('keydown.dismiss.bs.modal', $.proxy(function (e) {
+      this.$element.on('keydown.dismiss.bs.jumbotron', $.proxy(function (e) {
         e.which == 27 && this.hide()
       }, this))
     } else if (!this.isShown) {
-      this.$element.off('keydown.dismiss.bs.modal')
+      this.$element.off('keydown.dismiss.bs.jumbotron')
     }
   }
 
-  Modal.prototype.resize = function () {
+  jumbotron.prototype.resize = function () {
     if (this.isShown) {
-      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this))
+      $(window).on('resize.bs.jumbotron', $.proxy(this.handleUpdate, this))
     } else {
-      $(window).off('resize.bs.modal')
+      $(window).off('resize.bs.jumbotron')
     }
   }
 
-  Modal.prototype.hideModal = function () {
+  jumbotron.prototype.hidejumbotron = function () {
     var that = this
     this.$element.hide()
     this.backdrop(function () {
-      that.$body.removeClass('modal-open')
+      that.$body.removeClass('jumbotron-open')
       that.resetAdjustments()
       that.resetScrollbar()
-      that.$element.trigger('hidden.bs.modal')
+      that.$element.trigger('hidden.bs.jumbotron')
     })
   }
 
-  Modal.prototype.removeBackdrop = function () {
+  jumbotron.prototype.removeBackdrop = function () {
     this.$backdrop && this.$backdrop.remove()
     this.$backdrop = null
   }
 
-  Modal.prototype.backdrop = function (callback) {
+  jumbotron.prototype.backdrop = function (callback) {
     var that = this
     var animate = this.$element.hasClass('fade') ? 'fade' : ''
 
@@ -1106,10 +1106,10 @@ if (typeof jQuery === 'undefined') {
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $(document.createElement('div'))
-        .addClass('modal-backdrop ' + animate)
+        .addClass('jumbotron-backdrop ' + animate)
         .appendTo(this.$body)
 
-      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+      this.$element.on('click.dismiss.bs.jumbotron', $.proxy(function (e) {
         if (this.ignoreBackdropClick) {
           this.ignoreBackdropClick = false
           return
@@ -1129,7 +1129,7 @@ if (typeof jQuery === 'undefined') {
       doAnimate ?
         this.$backdrop
           .one('bsTransitionEnd', callback)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
+          .emulateTransitionEnd(jumbotron.BACKDROP_TRANSITION_DURATION) :
         callback()
 
     } else if (!this.isShown && this.$backdrop) {
@@ -1142,7 +1142,7 @@ if (typeof jQuery === 'undefined') {
       $.support.transition && this.$element.hasClass('fade') ?
         this.$backdrop
           .one('bsTransitionEnd', callbackRemove)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
+          .emulateTransitionEnd(jumbotron.BACKDROP_TRANSITION_DURATION) :
         callbackRemove()
 
     } else if (callback) {
@@ -1150,29 +1150,29 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  // these following methods are used to handle overflowing modals
+  // these following methods are used to handle overflowing jumbotrons
 
-  Modal.prototype.handleUpdate = function () {
+  jumbotron.prototype.handleUpdate = function () {
     this.adjustDialog()
   }
 
-  Modal.prototype.adjustDialog = function () {
-    var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
+  jumbotron.prototype.adjustDialog = function () {
+    var jumbotronIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
 
     this.$element.css({
-      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
-      paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
+      paddingLeft:  !this.bodyIsOverflowing && jumbotronIsOverflowing ? this.scrollbarWidth : '',
+      paddingRight: this.bodyIsOverflowing && !jumbotronIsOverflowing ? this.scrollbarWidth : ''
     })
   }
 
-  Modal.prototype.resetAdjustments = function () {
+  jumbotron.prototype.resetAdjustments = function () {
     this.$element.css({
       paddingLeft: '',
       paddingRight: ''
     })
   }
 
-  Modal.prototype.checkScrollbar = function () {
+  jumbotron.prototype.checkScrollbar = function () {
     var fullWindowWidth = window.innerWidth
     if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
       var documentElementRect = document.documentElement.getBoundingClientRect()
@@ -1182,19 +1182,19 @@ if (typeof jQuery === 'undefined') {
     this.scrollbarWidth = this.measureScrollbar()
   }
 
-  Modal.prototype.setScrollbar = function () {
+  jumbotron.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
     this.originalBodyPad = document.body.style.paddingRight || ''
     if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
   }
 
-  Modal.prototype.resetScrollbar = function () {
+  jumbotron.prototype.resetScrollbar = function () {
     this.$body.css('padding-right', this.originalBodyPad)
   }
 
-  Modal.prototype.measureScrollbar = function () { // thx walsh
+  jumbotron.prototype.measureScrollbar = function () { // thx walsh
     var scrollDiv = document.createElement('div')
-    scrollDiv.className = 'modal-scrollbar-measure'
+    scrollDiv.className = 'jumbotron-scrollbar-measure'
     this.$body.append(scrollDiv)
     var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
     this.$body[0].removeChild(scrollDiv)
@@ -1202,50 +1202,50 @@ if (typeof jQuery === 'undefined') {
   }
 
 
-  // MODAL PLUGIN DEFINITION
+  // jumbotron PLUGIN DEFINITION
   // =======================
 
   function Plugin(option, _relatedTarget) {
     return this.each(function () {
       var $this   = $(this)
-      var data    = $this.data('bs.modal')
-      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var data    = $this.data('bs.jumbotron')
+      var options = $.extend({}, jumbotron.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
-      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
+      if (!data) $this.data('bs.jumbotron', (data = new jumbotron(this, options)))
       if (typeof option == 'string') data[option](_relatedTarget)
       else if (options.show) data.show(_relatedTarget)
     })
   }
 
-  var old = $.fn.modal
+  var old = $.fn.jumbotron
 
-  $.fn.modal             = Plugin
-  $.fn.modal.Constructor = Modal
+  $.fn.jumbotron             = Plugin
+  $.fn.jumbotron.Constructor = jumbotron
 
 
-  // MODAL NO CONFLICT
+  // jumbotron NO CONFLICT
   // =================
 
-  $.fn.modal.noConflict = function () {
-    $.fn.modal = old
+  $.fn.jumbotron.noConflict = function () {
+    $.fn.jumbotron = old
     return this
   }
 
 
-  // MODAL DATA-API
+  // jumbotron DATA-API
   // ==============
 
-  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+  $(document).on('click.bs.jumbotron.data-api', '[data-toggle="jumbotron"]', function (e) {
     var $this   = $(this)
     var href    = $this.attr('href')
     var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+    var option  = $target.data('bs.jumbotron') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     if ($this.is('a')) e.preventDefault()
 
-    $target.one('show.bs.modal', function (showEvent) {
-      if (showEvent.isDefaultPrevented()) return // only register focus restorer if modal will actually get shown
-      $target.one('hidden.bs.modal', function () {
+    $target.one('show.bs.jumbotron', function (showEvent) {
+      if (showEvent.isDefaultPrevented()) return // only register focus restorer if jumbotron will actually get shown
+      $target.one('hidden.bs.jumbotron', function () {
         $this.is(':visible') && $this.trigger('focus')
       })
     })

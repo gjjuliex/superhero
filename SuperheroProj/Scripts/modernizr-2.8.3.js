@@ -571,7 +571,11 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
 
-    // Super comprehensive table about all the unique implementations of
+    // Super comprehensive table 
+
+
+
+    all the unique implementations of
     // border-radius: muddledramblings.com/table-of-css3-border-radius-compliance
 
     tests['borderradius'] = function() {

@@ -9,6 +9,7 @@ namespace SuperheroProj.Models
     public class SuperheroProj
     {
         [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string AlterName { get; set; }
         public string Ability { get; set; }

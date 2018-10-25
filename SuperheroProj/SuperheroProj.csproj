@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201810241544277_initial migration.Designer.cs">
       <DependentUpon>201810241544277_initial migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810251605050_Added Id Property to superhero model.cs" />
+    <Compile Include="Migrations\201810251605050_Added Id Property to superhero model.Designer.cs">
+      <DependentUpon>201810251605050_Added Id Property to superhero model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -274,11 +278,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SuperheroProj\Create.cshtml" />
     <Content Include="Views\SuperheroProj\Index.cshtml" />
-    <Content Include="Views\SuperheroProj\Details.cshtml" />
     <Content Include="Views\SuperheroProj\Edit.cshtml" />
+    <Content Include="Views\Home\Superhero.cshtml" />
+    <Content Include="Views\SuperheroProj\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -296,6 +302,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810241544277_initial migration.resx">
       <DependentUpon>201810241544277_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251605050_Added Id Property to superhero model.resx">
+      <DependentUpon>201810251605050_Added Id Property to superhero model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

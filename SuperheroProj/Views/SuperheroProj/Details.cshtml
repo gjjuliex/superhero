@@ -6,45 +6,45 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>SuperheroProj</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AlterName)
-            
-        </dt>
+<fieldset>
+    <legend>SuperheroProj</legend>
 
-        <dd>
-            @Html.DisplayFor(model => model.AlterName)
-        </dd>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.AlterName)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ability)
-        </dt>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AlterName)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ability)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecondAbility)
-        </dt>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Ability)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecondAbility)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Catchphrase)
-        </dt>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ability)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Catchphrase)
-        </dd>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.SecondAbility)
+    </div>
 
-    </dl>
-</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SecondAbility)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Catchphrase)
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Catchphrase)
+    </div>
+
+       
+</fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Name }) |
     @Html.ActionLink("Back to List", "Index")

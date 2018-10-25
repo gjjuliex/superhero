@@ -10,6 +10,8 @@ namespace SuperheroProj.Controllers
     public class SuperheroProjController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        
+      
 
         // GET: SuperheroProj
         public ActionResult Index()
@@ -17,7 +19,14 @@ namespace SuperheroProj.Controllers
             
             var superHeroes = db.SuperheroProj;
 
-            return View(superHeroes);
+            return View(superHeroes.ToList());
+
+        }
+        [HttpGet]
+        public ActionResult Details (int Id = 0)
+        {
+            SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(Id);
+            return View(superhero);
         }
 
         public ActionResult Create()
@@ -31,27 +40,24 @@ namespace SuperheroProj.Controllers
         {                   
                db.SuperheroProj.Add(superhero);
                db.SaveChanges();
-                return RedirectToAction("Index");
+               return RedirectToAction("Index");
                                  
         }
-
+        [HttpPost]
         public ActionResult Details(SuperheroProj.Models.SuperheroProj superhero)
         {
             return View(superhero);
         }
 
+
         public ActionResult Edit (int id = 0)
-        {
-            var superHeroes = db.SuperheroProj;
+        {                   
             SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
-            if (superhero == null)
+           if (superhero == null)
             {
                 return HttpNotFound();
             }
-
-            ViewBag.superhero = new SelectList(db.SuperheroProj, "Name", "AlterName", "Ability", "SecondAbility", "Catchphrase");
-            return View(superhero);
-
+            return View(superhero);          
         }
 
         [HttpPost]
@@ -66,11 +72,26 @@ namespace SuperheroProj.Controllers
             return View(superhero);
         }
 
-            
+        public ActionResult Delete(int? id)
+        {
 
+            SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
+            if (superhero == null) 
+            {
+                return HttpNotFound();
+            }
+            return View(superhero);
+        }
 
-
-
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Movie movie = db.Movies.Find(id);
+        //    db.Movies.Remove(movie);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
 
     }
