@@ -280,6 +280,7 @@
     <Content Include="Views\SuperheroProj\Index.cshtml" />
     <Content Include="Views\SuperheroProj\Edit.cshtml" />
     <Content Include="Views\Home\Superhero.cshtml" />
+    <Content Include="Views\SuperheroProj\Delete.cshtml" />
     <Content Include="Views\SuperheroProj\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>

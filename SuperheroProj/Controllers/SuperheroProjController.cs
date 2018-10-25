@@ -53,10 +53,7 @@ namespace SuperheroProj.Controllers
         public ActionResult Edit (int id = 0)
         {                   
             SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
-           if (superhero == null)
-            {
-                return HttpNotFound();
-            }
+            
             return View(superhero);          
         }
 
@@ -83,15 +80,15 @@ namespace SuperheroProj.Controllers
             return View(superhero);
         }
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Movie movie = db.Movies.Find(id);
-        //    db.Movies.Remove(movie);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
+            db.SuperheroProj.Remove(superhero);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
     }
