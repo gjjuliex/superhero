@@ -37,18 +37,33 @@ namespace SuperheroProj.Controllers
 
         public ActionResult Details(SuperheroProj.Models.SuperheroProj superhero)
         {
-            return View();
+            return View(superhero);
         }
 
-        public ActionResult Edit ()//int id)
+        public ActionResult Edit (int id = 0)
         {
-            //SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
-            //if (superhero == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View("Create");
+            var superHeroes = db.SuperheroProj;
+            SuperheroProj.Models.SuperheroProj superhero = db.SuperheroProj.Find(id);
+            if (superhero == null)
+            {
+                return HttpNotFound();
+            }
 
+            ViewBag.superhero = new SelectList(db.SuperheroProj, "Name", "AlterName", "Ability", "SecondAbility", "Catchphrase");
+            return View(superhero);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit (SuperheroProj.Models.SuperheroProj superhero)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(superhero).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(superhero);
         }
 
             
